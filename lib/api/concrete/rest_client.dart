@@ -7,7 +7,6 @@ part 'rest_client.g.dart';
 
 const url = "http://10.0.2.2:8080";
 const apiVersion = "1";
-const Map<String, dynamic> _headers = {"Content-Type": "application/graphql"};
 const Map<String, dynamic> _noAuth = {"NoAuth": true};
 
 @RestApi(baseUrl: "$url/api/v$apiVersion")
@@ -21,9 +20,4 @@ abstract class RestClient {
   @POST("/signUp")
   @Extra(_noAuth)
   Future<String> register(@Body() Map<String, dynamic> map);
-
-  @POST("/")
-  @Headers(_headers)
-  Future<List<Note>> getNotes(
-      @Query("query") String query, @Query("variables") String variables);
 }

@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 
 class RequestStatus<TResult> extends Equatable {
   final TResult result;
-  final DioError error;
+  final Exception error;
   final RequestState state;
 
   const RequestStatus._({
@@ -18,7 +18,7 @@ class RequestStatus<TResult> extends Equatable {
   const RequestStatus.loading()
       : this._(state: RequestState.loading);
 
-  const RequestStatus.error(DioError error)
+  const RequestStatus.error(Exception error)
       : this._(state: RequestState.error, error: error);
 
   const RequestStatus.ok(TResult result)

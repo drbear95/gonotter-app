@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -192,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
           case RequestState.error:
             Scaffold.of(context).showSnackBar(SnackBar(
                 backgroundColor: darkTheme.accentColor,
-                content: Text(state.status.error.response.data)));
+                content: Text((state.status.error as DioError).response.data)));
 
             Navigator.of(context).pop();
             context.read<LoginPageBloc>().add(const Finish());

@@ -17,11 +17,12 @@ class _RestClient implements RestClient {
   String baseUrl;
 
   @override
-  Future<AuthDetails> login(query) async {
-    ArgumentError.checkNotNull(query, 'query');
+  Future<AuthDetails> login(map) async {
+    ArgumentError.checkNotNull(map, 'map');
     const _extra = <String, dynamic>{'NoAuth': true};
     final queryParameters = <String, dynamic>{};
-    final _data = query;
+    final _data = <String, dynamic>{};
+    _data.addAll(map ?? <String, dynamic>{});
     final _result = await _dio.request<Map<String, dynamic>>('/signIn',
         queryParameters: queryParameters,
         options: RequestOptions(
@@ -35,11 +36,12 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<String> register(query) async {
-    ArgumentError.checkNotNull(query, 'query');
+  Future<String> register(map) async {
+    ArgumentError.checkNotNull(map, 'map');
     const _extra = <String, dynamic>{'NoAuth': true};
     final queryParameters = <String, dynamic>{};
-    final _data = query;
+    final _data = <String, dynamic>{};
+    _data.addAll(map ?? <String, dynamic>{});
     final _result = await _dio.request<String>('/signUp',
         queryParameters: queryParameters,
         options: RequestOptions(
@@ -49,31 +51,6 @@ class _RestClient implements RestClient {
             baseUrl: baseUrl),
         data: _data);
     final value = _result.data;
-    return value;
-  }
-
-  @override
-  Future<List<Note>> getNotes(query, variables) async {
-    ArgumentError.checkNotNull(query, 'query');
-    ArgumentError.checkNotNull(variables, 'variables');
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'query': query,
-      r'variables': variables
-    };
-    final _data = <String, dynamic>{};
-    final _result = await _dio.request<List<dynamic>>('/',
-        queryParameters: queryParameters,
-        options: RequestOptions(
-            method: 'POST',
-            headers: <String, dynamic>{r'Content-Type': 'application/graphql'},
-            extra: _extra,
-            contentType: 'application/graphql',
-            baseUrl: baseUrl),
-        data: _data);
-    var value = _result.data
-        .map((dynamic i) => Note.fromJson(i as Map<String, dynamic>))
-        .toList();
     return value;
   }
 }

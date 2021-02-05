@@ -10,7 +10,7 @@ class AuthenticationInterceptor extends InterceptorsWrapper {
     final noAuthKey = "NoAuth";
 
     if(!options.extra.containsKey(noAuthKey)){
-      options.headers["Authentication"] = "Bearer ${session.accessToken}";
+      options.headers["Authorization"] = "Bearer ${session.accessToken}";
     }
 
     return super.onRequest(options);

@@ -39,19 +39,21 @@ class _AppWidgetState extends State<AppWidget> {
     return BlocProvider(
         create: (context) => AppWidgetBloc()..add(AppLoaded()),
         child: MaterialApp(
-          title: "Test name",
+          title: "GONotter",
           home: BlocBuilder<AppWidgetBloc, AppWidgetState>(
             builder: (context, state) {
-              if (state is AuthenticationState) {
-                if(state.status == AuthenticationStatus.authenticated){
-                  navigation.navigateTo(context, "/notes");
-                }else if(state.status == AuthenticationStatus.unauthenticated){
-                  Container();
-                }else{
-                  return HomePage();
-                }
-              }
-              return Container();
+            //   if (state is AuthenticationState) {
+            //     if(state.status == AuthenticationStatus.authenticated){
+            //       //navigation.navigateTo(context, "/notes");
+            //       HomePage();
+            //     }else if(state.status == AuthenticationStatus.unauthenticated){
+            //       HomePage();
+            //     }else{
+            //       return HomePage();
+            //     }
+            //   }
+            //   return Container();
+              return HomePage();
             },
           ),
           builder: (context, child) {
