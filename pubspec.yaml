@@ -17,8 +17,15 @@ dependencies:
   json_annotation: ^3.1.1
   logger: ^0.9.4
   get_it: ^5.0.6
+  retrofit: any
+  flutter_secure_storage: 3.3.1
+  bloc: ^6.1.0
+  flutter_bloc: ^6.1.0
+  equatable: ^1.2.5
 
 dev_dependencies:
+  retrofit_generator: any
+  build_runner: any
   flutter_test:
     sdk: flutter
 
